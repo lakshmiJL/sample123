@@ -1,0 +1,5 @@
+{
+  "name": "Neon Jumper Demo",
+  "description": "An infinite jumping game with neon visuals and glowing gems.",
+  "requestFramePermissions": []
+}
