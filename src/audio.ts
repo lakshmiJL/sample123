@@ -27,6 +27,46 @@ class AudioManager {
     osc.stop(this.ctx.currentTime + 0.1);
   }
 
+  playSpring() {
+    this.init();
+    if (!this.ctx) return;
+    const osc = this.ctx.createOscillator();
+    const gain = this.ctx.createGain();
+
+    osc.type = 'triangle';
+    osc.frequency.setValueAtTime(250, this.ctx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(900, this.ctx.currentTime + 0.2);
+
+    gain.gain.setValueAtTime(0.18, this.ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.01, this.ctx.currentTime + 0.25);
+
+    osc.connect(gain);
+    gain.connect(this.ctx.destination);
+
+    osc.start();
+    osc.stop(this.ctx.currentTime + 0.25);
+  }
+
+  playCrack() {
+    this.init();
+    if (!this.ctx) return;
+    const osc = this.ctx.createOscillator();
+    const gain = this.ctx.createGain();
+
+    osc.type = 'sawtooth';
+    osc.frequency.setValueAtTime(180, this.ctx.currentTime);
+    osc.frequency.linearRampToValueAtTime(60, this.ctx.currentTime + 0.08);
+
+    gain.gain.setValueAtTime(0.12, this.ctx.currentTime);
+    gain.gain.linearRampToValueAtTime(0.01, this.ctx.currentTime + 0.08);
+
+    osc.connect(gain);
+    gain.connect(this.ctx.destination);
+
+    osc.start();
+    osc.stop(this.ctx.currentTime + 0.08);
+  }
+
   playGem() {
     this.init();
     if (!this.ctx) return;
